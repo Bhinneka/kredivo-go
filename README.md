@@ -2,6 +2,8 @@
 
 ### KREDIVO API DOCS (https://doc.kredivo.com)
 
+[![Build Status](https://travis-ci.org/Bhinneka/kredivo-go.svg?branch=master)](https://travis-ci.org/Bhinneka/kredivo-go)
+[![codecov](https://codecov.io/gh/Bhinneka/kredivo-go/branch/master/graph/badge.svg)](https://codecov.io/gh/Bhinneka/kredivo-go)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Bhinneka/kredivo-go/blob/master/LICENSE)
 
 ## Bhinneka :blue_heart: Golang
