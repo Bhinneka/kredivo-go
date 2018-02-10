@@ -20,7 +20,7 @@
 
   ```go
   kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
-  kred.Env = kred.Env = kredivo.Production.String()
+  kred.Env = kredivo.Production.String()
   ```
 
 ### Simple Usage
