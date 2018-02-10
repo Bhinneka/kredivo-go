@@ -22,9 +22,11 @@ type kredivo struct {
 }
 
 // New function, create kredivo pointer
-// required parameter, your Kredivo Merchan Key
-// pushURI parameter, your Notification URL (POST METHOD) that used by Kredivo to Send Payment Notification
-// backToStoreURI parameter, your redirect page when user finished their transaction, (Your Thank You Page's Website)
+// Required parameter,
+//1. your Kredivo Merchan Key
+//2. pushURI parameter, your Notification URL (POST METHOD) that used by Kredivo to Send Payment Notification
+//3. backToStoreURI parameter, your redirect page when user finished their transaction, (Your Thank You Page's Website)
+//4. HTTP Request Timeout
 func New(serverKey, pushURI, backToStoreURI string, timeout time.Duration) *kredivo {
 	httpRequest := newRequest(timeout)
 	return &kredivo{
