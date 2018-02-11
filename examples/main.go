@@ -33,8 +33,7 @@ var cancelRequestData = []byte(`{
 
 }`)
 
-func checkoutOrder() {
-	kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
+func checkoutOrder(kred kredivo.KredivoService) {
 
 	var order kredivo.Order
 
@@ -101,7 +100,16 @@ func checkoutOrder() {
 		fmt.Println(result.Error.Error())
 	}
 
-	fmt.Println(result.Result)
+	//result.Result is an interface
+	//you should assert to specific type
+
+	checkoutResponse, ok := result.Result.(kredivo.CheckoutResponse)
+
+	if !ok {
+		fmt.Println("Result is not Checkout Response")
+	}
+
+	fmt.Println(checkoutResponse)
 }
 
 func getPayments() {
@@ -184,5 +192,7 @@ func cancel() {
 func main() {
 	fmt.Println("KREDIVO")
 
-	checkoutOrder()
+	kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
+
+	checkoutOrder(kred)
 }
