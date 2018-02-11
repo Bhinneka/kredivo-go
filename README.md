@@ -40,16 +40,12 @@
     )
 
     //Checkout Order
-    func checkoutOrder() {
-      //KREDIVO Constructor
-      //Required Parameters:
-      //1. Merchant Server Key
-      //2. URI of merchant push-notification API (HTTP POST)
-      //3. URI of your store page. Used on the settlement page. Kredivo’s server will pass some params to this uri for merchant’s server acknowledgement: order_id: Order Id given by Merchant; tr_id: Transaction Id given by Kredivo;tr_status: Transaction status of a transaction; sign_key: Signature key to validate if the notification is originated from Kredivo. Please contact us how to parse this signature_key by using your client key.
-      //4. Http Request Timeout
-    	kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
+    //in abstraction style
+    //you should use KredivoService, instead of invoke directly to kredivo's Constructor
+    //this function now easy to test
+    func checkoutOrder(kred kredivo.KredivoService) {
 
-    	var order kredivo.Order
+      var order kredivo.Order
 
     	order.PaymentType = "30_days"
     	order.TransactionDetails = kredivo.TransactionDetails{
@@ -114,13 +110,31 @@
     		fmt.Println(result.Error.Error())
     	}
 
-    	fmt.Println(result.Result)
+    	//result.Result is an interface
+    	//you should assert to specific type
+
+    	checkoutResponse, ok := result.Result.(kredivo.CheckoutResponse)
+
+    	if !ok {
+    		fmt.Println("Result is not Checkout Response")
+    	}
+
+    	fmt.Println(checkoutResponse)
     }
 
+    //main function
     func main() {
     	fmt.Println("KREDIVO")
 
-    	checkoutOrder()
+      //KREDIVO Constructor
+      //Required Parameters:
+      //1. Merchant Server Key
+      //2. URI of merchant push-notification API (HTTP POST)
+      //3. URI of your store page. Used on the settlement page. Kredivo’s server will pass some params to this uri for merchant’s server acknowledgement: order_id: Order Id given by Merchant; tr_id: Transaction Id given by Kredivo;tr_status: Transaction status of a transaction; sign_key: Signature key to validate if the notification is originated from Kredivo. Please contact us how to parse this signature_key by using your client key.
+      //4. Http Request Timeout
+    	kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
+
+    	checkoutOrder(kred)
     }
 
     ```
