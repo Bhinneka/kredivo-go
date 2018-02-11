@@ -8,6 +8,8 @@
 
 ## Bhinneka :blue_heart: Golang
 
+### Bhoper (Bhinneka Gopher) ![alt text](./files/bhoper.png)
+
 ### Install
   ```shell
   go get github.com/Bhinneka/kredivo-go
