@@ -150,6 +150,8 @@
     ```shell
     make cover
     ```
+    
+[![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://forthebadge.com)
 
 ## Authors
   - Lone Wolf (https://github.com/wuriyanto48)
