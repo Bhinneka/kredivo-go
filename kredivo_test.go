@@ -164,7 +164,7 @@ func TestKredivo(t *testing.T) {
 	//TransactionStatus Request Payload
 	transactionStatusRequestData := []byte(`{
 		"server_key":"MEJ4FLRc74UU64cxCF8Z3HYSpPctD7",
-		"order_id":"8192K383",
+		"order_id":"8192K383"
 	}`)
 
 	t.Run("Test Kredivo Creation", func(t *testing.T) {
@@ -609,7 +609,7 @@ func TestKredivo(t *testing.T) {
 				"fraud_status": "accept",
 				"order_id": "KD14721",
 				"transaction_time": 1501842660,
-				"external_userid": SbmEaX1fdr,
+				"external_userid": "SbmEaX1fdr",
 				"amount": "1515521.00",
 				"payment_type": "30_days",
 				"transaction_status": "cancel",
