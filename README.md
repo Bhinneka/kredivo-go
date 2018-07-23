@@ -155,3 +155,4 @@
 
 ## Authors
   - Lone Wolf (https://github.com/wuriyanto48)
+  - Dhiaz Aditya (https://github.com/dhiaz06)

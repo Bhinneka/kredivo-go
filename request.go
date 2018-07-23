@@ -23,7 +23,7 @@ type CancelRequest struct {
 	CancellationDate   string `json:"cancellation_date"`
 }
 
-//PartialCancelRequest, for cancel transaction
+//PartialCancelRequest request, for cancel transaction
 type PartialCancelRequest struct {
 	ServerKey          string             `json:"server_key"`
 	TransactionDetails TransactionDetails `json:"transaction_details"`
@@ -90,4 +90,10 @@ type Seller struct {
 	Name    string  `json:"name"`
 	Email   string  `json:"email"`
 	Address Address `json:"address"`
+}
+
+//TransactionStatusRequest request, for getting transaction status
+type TransactionStatusRequest struct {
+	ServerKey string `json:"server_key"`
+	OrderID   string `json:"order_id"`
 }

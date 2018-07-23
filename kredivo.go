@@ -217,3 +217,36 @@ func (r *kredivo) PartialCancel(partialRequest *PartialCancelRequest) ServiceRes
 
 	return ServiceResult{Result: cancelResponse}
 }
+
+//PartialCancel Method, for cancel partial transaction
+func (r *kredivo) TransactionStatus(tansactionStatusRequest *TransactionStatusRequest) ServiceResult {
+	r.info().Println("Starting get transaction status..")
+
+	//create map headers
+	headers := make(map[string]string)
+	headers["Content-Type"] = "application/json"
+	headers["Accept"] = "application/json"
+
+	//set ServerKey, to partial cancel request
+	tansactionStatusRequest.ServerKey = r.serverKey
+
+	//Marshal Partial Cancel Request
+	payload, err := json.Marshal(tansactionStatusRequest)
+
+	if err != nil {
+		r.error().Println(err.Error())
+		return ServiceResult{Error: err}
+	}
+
+	var transactionStatusReponse TransactionStatusResponse
+
+	//call partial cancel transaction endpoint
+	err = r.call("POST", "transaction/status", bytes.NewBuffer(payload), &transactionStatusReponse, headers)
+
+	if err != nil {
+		r.error().Println(err.Error())
+		return ServiceResult{Error: err}
+	}
+
+	return ServiceResult{Result: transactionStatusReponse}
+}

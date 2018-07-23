@@ -95,3 +95,18 @@ type CancelResponse struct {
 	Message           string `json:"message,omitempty"`
 	TransactionID     string `json:"transaction_id,omitempty"`
 }
+
+//TransactionStatusResponse for response
+type TransactionStatusResponse struct {
+	Status            string `json:"status,omitempty"`
+	LegalName         string `json:"legal_name,omitempty"`
+	FraudStatus       string `json:"fraud_status,omitempty"`
+	OrderID           string `json:"order_id,omitempty"`
+	TransactionTime   int    `json:"transaction_time,omitempty"`
+	ExternalUserID    string `json:"external_userid,omitempty"`
+	Amount            string `json:"amount,omitempty"`
+	PaymentType       string `json:"payment_type,omitempty"`
+	TransactionStatus string `json:"transaction_status,omitempty"`
+	Message           string `json:"message,omitempty"`
+	TransactionID     string `json:"transaction_id,omitempty"`
+}
