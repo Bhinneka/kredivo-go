@@ -33,6 +33,11 @@ var cancelRequestData = []byte(`{
 
 }`)
 
+var transactionStatusRequestData = []byte(`{
+	"server_key":"MEJ4FLRc74UU64cxCF8Z3HYSpPctD7",
+	"order_id":"8192K383"
+}`)
+
 func checkoutOrder(kred kredivo.KredivoService) {
 
 	var order kredivo.Order
@@ -186,6 +191,33 @@ func cancel() {
 	}
 
 	fmt.Println(cancelRes)
+
+}
+
+func GetTransactionStatus() {
+	kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.merchant.com/push.php", "https://merchant.com", 8*time.Second)
+
+	var transactionStatusRequest kredivo.TransactionStatusRequest
+
+	err := json.Unmarshal(transactionStatusRequestData, &transactionStatusRequest)
+
+	if err != nil {
+		fmt.Println("errrrrr " + err.Error())
+	}
+
+	result := kred.TransactionStatus(&transactionStatusRequest)
+
+	if result.Error != nil {
+		fmt.Println(result.Error.Error())
+	}
+
+	trxStatusRes, ok := result.Result.(kredivo.TransactionStatusResponse)
+
+	if !ok {
+		fmt.Println("result is not transaction status response")
+	}
+
+	fmt.Println(trxStatusRes)
 
 }
 

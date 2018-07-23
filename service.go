@@ -23,4 +23,7 @@ type KredivoService interface {
 
 	//PartialCancel Method, for cancel partial transaction
 	PartialCancel(*PartialCancelRequest) ServiceResult
+
+	//TransactionStatus Method, for get transaction status
+	TransactionStatus(*TransactionStatusRequest) ServiceResult
 }

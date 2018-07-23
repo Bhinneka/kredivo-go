@@ -159,7 +159,13 @@ func TestKredivo(t *testing.T) {
        },
       "cancelled_by":"Althea",
       "cancellation_date":"1501846306"
-      }`)
+	  }`)
+
+	//TransactionStatus Request Payload
+	transactionStatusRequestData := []byte(`{
+		"server_key":"MEJ4FLRc74UU64cxCF8Z3HYSpPctD7",
+		"order_id":"8192K383"
+	}`)
 
 	t.Run("Test Kredivo Creation", func(t *testing.T) {
 
@@ -579,6 +585,59 @@ func TestKredivo(t *testing.T) {
 
 		if cancelResult.Error == nil {
 			t.Errorf("PartialCancel() Should returned an error: %s", cancelResult.Error)
+		}
+
+	})
+
+	t.Run("Test Kredivo Get Transaction Status", func(t *testing.T) {
+		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusOK)
+
+			if r.Method != "POST" {
+				t.Errorf("Expected POST request, got ‘%s’", r.Method)
+			}
+
+			if r.URL.EscapedPath() != "/transaction/status" {
+				t.Errorf("Expected request to ‘/transaction/status, got ‘%s’", r.URL.EscapedPath())
+			}
+
+			w.Header().Set("Content-Type", "application-json; charset=utf-8")
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(`{
+				"status": "OK",
+				"legal_name": "ADITYA LUKMAN AFANDI",
+				"fraud_status": "accept",
+				"order_id": "KD14721",
+				"transaction_time": 1501842660,
+				"external_userid": "SbmEaX1fdr",
+				"amount": "1515521.00",
+				"payment_type": "30_days",
+				"transaction_status": "cancel",
+				"message": "Cancelled the transaction!",
+				"transaction_id": "6febc2b2-ac4f-462c-9e7e-56fc5da05d91"
+			}`))
+		}))
+
+		// close server
+		defer ts.Close()
+
+		//construct kredivo
+		kred := New("123456", "bhinneka.com/kredivo/notif", "bhinneka.com", 8*time.Second)
+
+		var transactionRequest TransactionStatusRequest
+
+		err := json.Unmarshal(transactionStatusRequestData, &transactionRequest)
+
+		if err != nil {
+			t.Error("Cannot Unmarshal Transaction Status Request JSON data")
+		}
+
+		//hit the transaction status endpoint
+		kred.Env = ts.URL
+		transactionStatusResult := kred.TransactionStatus(&transactionRequest)
+
+		if transactionStatusResult.Error != nil {
+			t.Errorf("TransactionStatus() returned an error: %s", transactionStatusResult.Error)
 		}
 
 	})
