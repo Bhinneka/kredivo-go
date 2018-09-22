@@ -3,6 +3,7 @@
 ### KREDIVO API DOCS (https://doc.kredivo.com)
 
 [![GoDoc](https://godoc.org/github.com/Bhinneka/kredivo-go?status.svg)](https://godoc.org/github.com/Bhinneka/kredivo-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Bhinneka/kredivo-go)](https://goreportcard.com/report/github.com/Bhinneka/kredivo-go)
 [![Build Status](https://travis-ci.org/Bhinneka/kredivo-go.svg?branch=master)](https://travis-ci.org/Bhinneka/kredivo-go)
 [![codecov](https://codecov.io/gh/Bhinneka/kredivo-go/branch/master/graph/badge.svg)](https://codecov.io/gh/Bhinneka/kredivo-go)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Bhinneka/kredivo-go/blob/master/LICENSE)
