@@ -14,13 +14,21 @@
 
 ### Install
   ```shell
-  go get github.com/Bhinneka/kredivo-go
+  $ go get github.com/Bhinneka/kredivo-go
+  ```
+  using `glide` https://glide.sh/
+  ```shell
+  $ glide get github.com/Bhinneka/kredivo-go
+  ```
+  using `dep` https://golang.github.io/dep/
+  ```shell
+  $ dep ensure -add github.com/Bhinneka/kredivo-go
   ```
 
 ### Configuration
 
   By Default KREDIVO Go using Sandbox Environment,
-  you can change this config after calling KREDIVO Constructor
+  you can change this config after invoke kredivo-go's Constructor
 
   ```go
   kred := kredivo.New("8tLHIx8V0N6KtnSpS9Nbd6zROFFJH7", "https://api.bhinneka.com/push_notif", "https://bhinneka.com", 8*time.Second)
@@ -41,10 +49,12 @@
     	"github.com/Bhinneka/kredivo-go"
     )
 
-    //Checkout Order
-    //in abstraction style
-    //you should use KredivoService, instead of invoke directly to kredivo's Constructor
-    //this function now easy to test
+    /* Checkout Order
+       in abstraction style
+	   you should use KredivoService, 
+	   instead of invoke directly to kredivo's Constructor
+	   this function now easy to test
+	*/
     func checkoutOrder(kred kredivo.KredivoService) {
 
       var order kredivo.Order
