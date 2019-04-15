@@ -19,7 +19,7 @@ func (e Env) String() string {
 	case SandBox:
 		return "https://sandbox.kredivo.com/kredivo/v2"
 	case Production:
-		return "https://kredivo.com/kredivo/v2"
+		return "https://api.kredivo.com/kredivo/v2"
 	default:
 		return "https://sandbox.kredivo.com/kredivo/v2"
 	}
