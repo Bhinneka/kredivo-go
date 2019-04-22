@@ -19,7 +19,7 @@ func TestEnv(t *testing.T) {
 
 		productionEnv := Production
 
-		if productionEnv.String() != "https://kredivo.com/kredivo/v2" {
+		if productionEnv.String() != "https://api.kredivo.com/kredivo/v2" {
 			t.Errorf("Production Env Invalid %s", productionEnv.String())
 		}
 	})
