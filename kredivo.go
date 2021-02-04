@@ -253,3 +253,9 @@ func (r *kredivo) TransactionStatus(tansactionStatusRequest *TransactionStatusRe
 
 	return ServiceResult{Result: transactionStatusReponse}
 }
+
+func GenerateServiceResult(data interface{}, err error) ServiceResult {
+	var output ServiceResult
+	output = ServiceResult{Result: data, Error: err}
+	return output
+}
